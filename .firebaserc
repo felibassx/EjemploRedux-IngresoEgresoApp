@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "ingreso-egreso-app-ef11d": {
+      "hosting": {
+        "IngresoEgresoApp": [
+          "ingreso-egreso-app-ef11d"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "ingreso-egreso-app-ef11d"
+  }
+}
