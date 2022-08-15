@@ -13,6 +13,10 @@ import * as authActions from '../redux-config/auth-store/auth.action';
 })
 export class AuthService {
   userSubscription: Subscription;
+  private _user: UsuarioModel;
+  get user() {
+    return this._user;
+  }
   constructor(
     public auth: AngularFireAuth,
     public firestore: AngularFirestore,
@@ -44,9 +48,11 @@ export class AuthService {
           .valueChanges()
           .subscribe((userStore: any) => {
             const user = UsuarioModel.fromFirebase(userStore);
+            this._user = user;
             this.store.dispatch(authActions.setUser({ user }));
           });
       } else {
+        this._user = null;
         this.userSubscription.unsubscribe();
         this.store.dispatch(authActions.unsetUser());
       }
